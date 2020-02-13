@@ -11,13 +11,21 @@ knitr::opts_chunk$set(echo = TRUE)
 library(readxl)
 library(janitor)
 library(tidyverse)
+library(gt)
 ```
 
 ```{r reading, echo=FALSE}
 enrollment <- read_excel("class_enrollment_summary_by_term_2.13.20.xlsx", skip=3) %>%
   clean_names() %>%
   filter(course_department == "Government") %>%
-  arrange(desc(total))
+  arrange(desc(total)) %>%
+  slice(1:5) %>%
+  select(course_title, course_name, instructor_full_name, total) %>%
+  gt() %>%
+  cols_label(course_title="Course Title", course_name="Course Name",instructor_full_name="Instructor",total="Enrollment")%>%
+  tab_header(
+    title = "Top Government Classes by Enrollment"
+  )
 
 enrollment
 ```
