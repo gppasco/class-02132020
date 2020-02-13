@@ -22,9 +22,9 @@ enrollment <- read_excel("class_enrollment_summary_by_term_2.13.20.xlsx", skip=3
   slice(1:5) %>%
   select(course_title, course_name, instructor_full_name, total) %>%
   gt() %>%
-  cols_label(course_title="Course Title", course_name="Course Name",instructor_full_name="Instructor",total="Enrollment")%>%
+  cols_label(course_title=md("**Course Title**"), course_name=md("**Course Name**"),instructor_full_name=md("**Instructor**"),total=md("**Enrollment**"))%>%
   tab_header(
-    title = "Top Government Classes by Enrollment"
+    title = md("**Top Government Classes by Enrollment**")
   )
 
 enrollment
